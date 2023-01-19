@@ -1,5 +1,14 @@
+// Import - libraries
+
 import { ThemeProvider } from "styled-components"
-import { GlobalStyle, StyledApp } from "./styled/StyledComponents"
+
+// Import - components
+
+import TimerElement from "./components/TimerElement"
+import { GlobalStyle, StyledApp } from "./styles/StyledComponents"
+
+// Import - types
+
 import { ThemeType } from "./types/ThemeType"
 
 // Functionality
@@ -23,7 +32,22 @@ function App(): JSX.Element {
     return (
         <ThemeProvider theme={theme}>
             <GlobalStyle />
-            <StyledApp></StyledApp>
+            <StyledApp>
+                <h1>We're launching soon</h1>
+                <div className="timer-div">
+                    {["days", "hours", "minutes", "seconds"].map((element, index) => <TimerElement key={index} content={element} />)}
+                </div>
+                <div className="footer-div">
+                    {["/icon-facebook.svg", "/icon-pinterest.svg", "/icon-instagram.svg"].map((element): JSX.Element => {
+                        const tmp: number = 3 * parseInt(theme.sizes.font as string)
+                        return (
+                            <svg width={tmp} height={tmp} viewBox="0 0 24 24">
+                                <use href={`${element}#icon`} />
+                            </svg>
+                        )
+                    })}
+                </div>
+            </StyledApp>
         </ThemeProvider>
     )
 }
