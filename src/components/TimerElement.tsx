@@ -1,8 +1,10 @@
+import { StyledTimerElement } from "../styles/StyledComponents"
+
 function TimerElement({content}: {content: string}): JSX.Element {
     return (
-        <div>
-            {content}
-        </div>
+        <StyledTimerElement>
+            
+        </StyledTimerElement>
     )
 }
 

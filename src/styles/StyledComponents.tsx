@@ -30,20 +30,25 @@ export const GlobalStyle = createGlobalStyle`
 
 export const StyledApp = styled.div`
 
+    position: relative;
+    top: 15%;
     width: 100%;
-    height: 100%;
+    height: 85%;
     display: flex;
     flex-direction: column;
     align-items: center;
     > h1 {
         color: white;
         text-transform: uppercase;
+        letter-spacing: 0.4rem;
     }
     > .timer-div {
         display: flex;
         gap: 1.5rem;
     }
     > .footer-div {
+        position: absolute;
+        bottom: 7.5%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -56,5 +61,13 @@ export const StyledApp = styled.div`
             }
         }
     }
+
+`
+
+// Timer's box component styles
+
+export const StyledTimerElement = styled.div`
+
+    
 
 `
