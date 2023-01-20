@@ -1,3 +1,7 @@
+// Import - hooks
+
+import { useEffect, useState, useMemo } from "react"
+
 // Import - libraries
 
 import { ThemeProvider } from "styled-components"
@@ -10,6 +14,10 @@ import { GlobalStyle, StyledApp } from "./styles/StyledComponents"
 // Import - types
 
 import { ThemeType } from "./types/ThemeType"
+
+// Import - functions
+
+import { timeHandler } from "./functions/timeHandler"
 
 // Functionality
 
@@ -29,19 +37,38 @@ const theme: ThemeType = {
 // Actual app
 
 function App(): JSX.Element {
+
+    const [time, setTime]: [number, Function] = useState(864000)
+
+    const calculatedPeriod = useMemo(() => timeHandler(time), [time])
+
+    useEffect(() => {
+        setInterval(() => {
+            setTime((n: number) => n - 1)
+        }, 1000)
+    }, [])
+
     return (
         <ThemeProvider theme={theme}>
             <GlobalStyle />
             <StyledApp>
                 <h1>We're launching soon</h1>
-                <div className="timer-div">
-                    {["days", "hours", "minutes", "seconds"].map((element, index) => <TimerElement key={index} content={element} />)}
+                <div className="timer-container">
+                    {["days", "hours", "minutes", "seconds"].map((element, index) => {
+                        return (
+                            <TimerElement 
+                                key={index} 
+                                value={calculatedPeriod[index]} 
+                                content={element}
+                            />
+                        )
+                    })}
                 </div>
-                <div className="footer-div">
-                    {["/icon-facebook.svg", "/icon-pinterest.svg", "/icon-instagram.svg"].map((element): JSX.Element => {
+                <div className="footer-container">
+                    {["/icon-facebook.svg", "/icon-pinterest.svg", "/icon-instagram.svg"].map((element, index): JSX.Element => {
                         const tmp: number = 3 * parseInt(theme.sizes.font as string)
                         return (
-                            <svg width={tmp} height={tmp} viewBox="0 0 24 24">
+                            <svg key={index} width={tmp} height={tmp} viewBox="0 0 24 24">
                                 <use href={`${element}#icon`} />
                             </svg>
                         )

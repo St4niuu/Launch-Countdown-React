@@ -22,6 +22,7 @@ export const GlobalStyle = createGlobalStyle`
         background-color: ${(props: {theme: ThemeType}) => props.theme.colors.darkBlue};
         font-family: 'Red Hat Text', sans-serif;
         font-size: ${(props: {theme: ThemeType}) => props.theme.sizes.font};
+        overflow-x: hidden;
     }
 
 `
@@ -34,19 +35,37 @@ export const StyledApp = styled.div`
     top: 15%;
     width: 100%;
     height: 85%;
+    min-height: 25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 6.5rem;
+    @media (min-width: 620px) {
+        gap: 9rem;
+    }
     > h1 {
         color: white;
         text-transform: uppercase;
         letter-spacing: 0.4rem;
+        padding: 0 2rem;
+        text-align: center;
+        font-size: 125%;
+        @media (min-width: 620px) {
+            padding: 0;
+            font-size: 2em;
+        }
     }
-    > .timer-div {
+    > .timer-container {
+        width: 100%;
+        min-width: 22.5rem;
         display: flex;
-        gap: 1.5rem;
+        gap: 1rem;
+        justify-content: center;
+        @media (min-width: 620px) {
+            gap: 2rem;
+        }
     }
-    > .footer-div {
+    > .footer-container {
         position: absolute;
         bottom: 7.5%;
         display: flex;
@@ -57,7 +76,7 @@ export const StyledApp = styled.div`
             fill: #8385A9;
             &:hover {
                 cursor: pointer;
-                fill: ${(props): {theme: ThemeType} => props.theme.colors.softRed};
+                fill: ${(props: {theme: ThemeType}) => props.theme.colors.softRed};
             }
         }
     }
@@ -68,6 +87,49 @@ export const StyledApp = styled.div`
 
 export const StyledTimerElement = styled.div`
 
-    
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    @media (min-width: 620px) {
+        width: 11rem;
+        height: 11rem;
+        gap: 0.2rem;
+    }
+    > .upper-container {
+        width: 100%;
+        flex-grow: 1;
+        background-color: ${(props: {theme: ThemeType}) => props.theme.colors.darkDesaturatedBlue};
+        border-radius: 4px 4px 7px 7px;
+        @media (min-width: 620px) {
+            border-radius: 7px 7px 15px 15px;
+        }
+    }
+    > .lower-container {
+        width: 100%;
+        flex-grow: 1;
+        background-color: ${(props: {theme: ThemeType}) => props.theme.colors.grayishBlue};
+        border-radius: 7px 7px 4px 4px;
+        box-shadow: 0 2px 0 3px black;
+        @media (min-width: 620px) {
+            border-radius: 15px 15px 7px 7px;
+            box-shadow: 0 10px 0 5px black;
+        }
+    }
+    > .timer-container-title {
+        position: absolute;
+        bottom: -30%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+        color: ${(props: {theme: ThemeType}) => props.theme.colors.grayishBlue};
+        font-size: 50%;
+        @media (min-width: 620px) {
+            font-size: 100%;
+        }
+    }
 
 `
