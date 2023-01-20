@@ -18,13 +18,14 @@ const TimerElement = memo(function({content, value}: {content: string, value: nu
 
     useEffect(() => {
         [upperBox, lowerBox].forEach(e => {
-            console.log(e.current!.className)
+            const element: Pick<HTMLDivElement, "style"> = e.current!.children[0] as HTMLDivElement
             e.current!.style.animation = `${e.current!.className.substring(0, e.current!.className.indexOf("-"))}BoxAnimation 0.6s`
-            e.current!.children[0].style.display = "none"
+            element.style.display = "none"
         })
         setTimeout(() => {
-            [upperBox, lowerBox].forEach(e => {
-                e.current!.children[0].style.display = "grid"
+            [upperBox, lowerBox].forEach((e) => {
+                const element: Pick<HTMLDivElement, "style"> = e.current!.children[0] as HTMLDivElement
+                element.style.display = "grid"
             })
         }, 400)
         setTimeout(() => {
