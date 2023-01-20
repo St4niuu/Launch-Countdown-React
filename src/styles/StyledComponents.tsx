@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components"
+import styled, { createGlobalStyle, css } from "styled-components"
 import { ThemeType } from "../types/ThemeType"
 
 // Global style
@@ -88,37 +88,70 @@ export const StyledApp = styled.div`
 export const StyledTimerElement = styled.div`
 
     position: relative;
-    width: 4rem;
-    height: 4rem;
     display: flex;
     flex-direction: column;
+    background-color: black;
+    width: 4rem;
+    height: 4rem;
     gap: 0.1rem;
+    border-radius: 5px;
     @media (min-width: 620px) {
         width: 11rem;
         height: 11rem;
         gap: 0.2rem;
+        border-radius: 10px;
     }
-    > .upper-container {
+    > .upper-timer-box {
+        position: relative;
         width: 100%;
         flex-grow: 1;
         background-color: ${(props: {theme: ThemeType}) => props.theme.colors.darkDesaturatedBlue};
         border-radius: 4px 4px 7px 7px;
+        color: ${(props: {theme: ThemeType}) => props.theme.colors.softRed};
         @media (min-width: 620px) {
             border-radius: 7px 7px 15px 15px;
         }
+        > div {
+            position: absolute;
+            height: calc(200% + 0.1rem);
+            width: 100%;
+            display: grid;
+            place-items: center;
+            font-size: 200%;
+            @media (min-width: 620px) {
+                height: calc(200% + 0.2rem);
+                font-size: 500%;
+            }
+        }
     }
-    > .lower-container {
+    > .lower-timer-box {
+        position: relative;
         width: 100%;
         flex-grow: 1;
         background-color: ${(props: {theme: ThemeType}) => props.theme.colors.grayishBlue};
         border-radius: 7px 7px 4px 4px;
-        box-shadow: 0 2px 0 3px black;
+        color: ${(props: {theme: ThemeType}) => props.theme.colors.softRed};${(props: {theme: ThemeType}) => props.theme.colors.softRed};
+        box-shadow: 0 1px 0 1px black;
         @media (min-width: 620px) {
             border-radius: 15px 15px 7px 7px;
-            box-shadow: 0 10px 0 5px black;
+            box-shadow: 0 3px 0 2px black;
+        }
+        > div {
+            position: absolute;
+            top: calc(-100% - 0.1rem);
+            left: 0;
+            height: calc(200% + 0.1rem);
+            width: 100%;
+            display: grid;
+            place-items: center;
+            font-size: 200%;
+            @media (min-width: 620px) {
+                height: calc(200% + 0.2rem);
+                font-size: 500%;
+            }
         }
     }
-    > .timer-container-title {
+    > .timer-title {
         position: absolute;
         bottom: -30%;
         left: 50%;
@@ -129,6 +162,32 @@ export const StyledTimerElement = styled.div`
         font-size: 50%;
         @media (min-width: 620px) {
             font-size: 100%;
+        }
+    }
+
+    @keyframes upperBoxAnimation {
+        0% {
+            transform-origin: 50% 100%;
+            transform: rotateX(0deg);
+        }
+        50% {
+            transform-origin: 50% 100%;
+            transform: rotateX(-180deg);
+        }
+        100% {
+            transform-origin: 50% 100%;
+            transform: rotateX(0deg);
+        }
+    }
+    @keyframes lowerBoxAnimation {
+        0% {
+            transform: rotateX(0);
+        }
+        50% {
+            transform: rotateX(180deg);
+        }
+        100% {
+            transform: rotateX(0);
         }
     }
 
