@@ -11,8 +11,8 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
     html, body, #root {
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
     }
     #root {
         background-image: url("/pattern-hills.svg"), url("/bg-stars.svg");
@@ -106,17 +106,17 @@ export const StyledTimerElement = styled.div`
         width: 100%;
         flex-grow: 1;
         background-color: ${(props: {theme: ThemeType}) => props.theme.colors.darkDesaturatedBlue};
-        border-radius: 4px 4px 7px 7px;
         color: ${(props: {theme: ThemeType}) => props.theme.colors.softRed};
+        border-radius: 4px 4px 7px 7px;
         @media (min-width: 620px) {
             border-radius: 7px 7px 15px 15px;
         }
         > div {
             position: absolute;
-            height: calc(200% + 0.1rem);
-            width: 100%;
             display: grid;
             place-items: center;
+            width: 100%;
+            height: calc(200% + 0.1rem);
             font-size: 200%;
             @media (min-width: 620px) {
                 height: calc(200% + 0.2rem);
@@ -129,8 +129,8 @@ export const StyledTimerElement = styled.div`
         width: 100%;
         flex-grow: 1;
         background-color: ${(props: {theme: ThemeType}) => props.theme.colors.grayishBlue};
-        border-radius: 7px 7px 4px 4px;
         color: ${(props: {theme: ThemeType}) => props.theme.colors.softRed};${(props: {theme: ThemeType}) => props.theme.colors.softRed};
+        border-radius: 7px 7px 4px 4px;
         box-shadow: 0 1px 0 1px black;
         @media (min-width: 620px) {
             border-radius: 15px 15px 7px 7px;
@@ -140,10 +140,10 @@ export const StyledTimerElement = styled.div`
             position: absolute;
             top: calc(-100% - 0.1rem);
             left: 0;
-            height: calc(200% + 0.1rem);
-            width: 100%;
             display: grid;
             place-items: center;
+            width: 100%;
+            height: calc(200% + 0.1rem);
             font-size: 200%;
             @media (min-width: 620px) {
                 height: calc(200% + 0.2rem);

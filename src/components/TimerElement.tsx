@@ -8,15 +8,20 @@ import { StyledTimerElement } from "../styles/StyledComponents"
 
 // Timer's element component
 
-const TimerElement = memo(function({content, value}: {content: string, value: number}): JSX.Element {
+const TimerElement = memo(function({content, value}: {content: string, value: number | string}): JSX.Element {
 
     const [upperBox, lowerBox] = [useRef<HTMLDivElement>(), useRef<HTMLDivElement>()]
 
+    if (value < 10) {
+        value = `0${value}`
+    }
+
     useEffect(() => {
-        upperBox.current!.style.animation = "upperBoxAnimation 0.6s"
-        lowerBox.current!.style.animation = "lowerBoxAnimation 0.6s"
-        upperBox.current!.children[0].style.display = "none"
-        lowerBox.current!.children[0].style.display = "none"
+        [upperBox, lowerBox].forEach(e => {
+            console.log(e.current!.className)
+            e.current!.style.animation = `${e.current!.className.substring(0, e.current!.className.indexOf("-"))}BoxAnimation 0.6s`
+            e.current!.children[0].style.display = "none"
+        })
         setTimeout(() => {
             [upperBox, lowerBox].forEach(e => {
                 e.current!.children[0].style.display = "grid"
